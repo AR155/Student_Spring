@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Define the Address bean -->
+    <bean id="address" class="com.pkg1.Address">
+        <constructor-arg value="123 Main St"/>
+        <constructor-arg value="Magarpatta"/>
+    </bean>
+
+    <!-- Define the first Student bean with setter injection -->
+    <bean id="studentSetter" class="com.pkg1.Student">
+        <property name="rollNo" value="101"/>
+        <property name="name" value="Ayush"/>
+        <property name="m1" value="95"/>
+        <property name="m2" value="90"/>
+        <property name="address" ref="address"/>
+        <!-- Use method injection to calculate total and percent -->
+        <lookup-method name="Calculate" bean="studentSetter"/>
+    </bean>
+
+    <!-- Define the second Student bean with constructor injection -->
+    <bean id="studentConstructor" class="com.pkg1.Student">
+        <constructor-arg value="102"/>
+        <constructor-arg value="Pawan"/>
+        <constructor-arg value="98"/>
+        <constructor-arg value="95"/>
+        <constructor-arg ref="address"/>
+    </bean>
+</beans>
